@@ -1,0 +1,5 @@
+---
+'@gitborlando/geo': patch
+---
+
+initial

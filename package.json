@@ -4,10 +4,8 @@
   "scripts": {
     "prepare": "npx husky",
     "clean": "rm -rf node_modules pnpm-lock.yaml && pnpm -r clean",
-    "changeset": "changeset",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:run": "vitest run"
+    "build": "pnpm -r build",
+    "changeset": "changeset"
   },
   "prettier": {
     "printWidth": 85,
