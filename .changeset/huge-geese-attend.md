@@ -1,5 +1,0 @@
----
-'@gitborlando/geo': major
----
-
-initial
