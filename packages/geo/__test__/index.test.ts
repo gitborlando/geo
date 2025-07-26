@@ -74,8 +74,8 @@ describe('Index exports', () => {
 
   it('should allow using static methods from exported classes', () => {
     // 测试静态方法
-    const matrix = Geo.Matrix.Create()
-    const normalizedAngle = Geo.Angle.Normal(370)
+    const matrix = Geo.Matrix.create()
+    const normalizedAngle = Geo.Angle.normal(370)
     const distance = Geo.xy_distance({ x: 0, y: 0 }, { x: 3, y: 4 })
 
     expect(matrix).toEqual([1, 0, 0, 1, 0, 0])

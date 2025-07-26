@@ -1,52 +1,52 @@
 export const { PI, cos, sin, tan, acos, asin, atan, atan2 } = Math
 
 export class Angle {
-  static Cos(angle: number) {
-    return cos(Angle.RadianFy(angle))
+  static cos(angle: number) {
+    return cos(Angle.radianFy(angle))
   }
 
-  static Sin(angle: number) {
-    return sin(Angle.RadianFy(angle))
+  static sin(angle: number) {
+    return sin(Angle.radianFy(angle))
   }
 
-  static Tan(angle: number) {
-    return tan(Angle.RadianFy(angle))
+  static tan(angle: number) {
+    return tan(Angle.radianFy(angle))
   }
 
-  static ACos(angle: number) {
-    return Angle.AngleFy(acos(Angle.RadianFy(angle)))
+  static acos(angle: number) {
+    return Angle.angleFy(acos(Angle.radianFy(angle)))
   }
 
-  static ASin(angle: number) {
-    return Angle.AngleFy(asin(Angle.RadianFy(angle)))
+  static asin(angle: number) {
+    return Angle.angleFy(asin(Angle.radianFy(angle)))
   }
 
-  static ATan(angle: number) {
-    return Angle.AngleFy(atan(Angle.RadianFy(angle)))
+  static atan(angle: number) {
+    return Angle.angleFy(atan(Angle.radianFy(angle)))
   }
 
-  static ATan2(y: number, x: number) {
-    return Angle.AngleFy(atan2(y, x))
+  static atan2(y: number, x: number) {
+    return Angle.angleFy(atan2(y, x))
   }
 
-  static AngleFy(radians: number) {
+  static angleFy(radians: number) {
     return radians * (180 / Math.PI)
   }
 
-  static RadianFy(angle: number) {
+  static radianFy(angle: number) {
     return angle * (Math.PI / 180)
   }
 
-  static Normal(angle: number) {
+  static normal(angle: number) {
     return (angle + 360) % 360
   }
 
-  static Snap(angle: number, step = 90) {
-    return Angle.Normal(Math.round(angle / step) * step)
+  static snap(angle: number, step = 90) {
+    return Angle.normal(Math.round(angle / step) * step)
   }
 
-  static RotatePoint(ax: number, ay: number, ox: number, oy: number, angle: number) {
-    const radian = Angle.RadianFy(angle)
+  static rotatePoint(ax: number, ay: number, ox: number, oy: number, angle: number) {
+    const radian = Angle.radianFy(angle)
     return {
       x: (ax - ox) * cos(radian) - (ay - oy) * sin(radian) + ox,
       y: (ax - ox) * sin(radian) + (ay - oy) * cos(radian) + oy,

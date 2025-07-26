@@ -65,7 +65,7 @@ describe('OBB', () => {
   })
 
   it('should create identity OBB correctly', () => {
-    const identity = OBB.IdentityOBB()
+    const identity = OBB.identityOBB()
     expect(identity.x).toBe(0)
     expect(identity.y).toBe(0)
     expect(identity.width).toBe(0)
@@ -75,7 +75,7 @@ describe('OBB', () => {
 
   it('should create from rect correctly', () => {
     const rect = { x: 10, y: 20, width: 30, height: 40 }
-    const obb = OBB.FromRect(rect, 45)
+    const obb = OBB.fromRect(rect, 45)
     expect(obb.x).toBe(10)
     expect(obb.y).toBe(20)
     expect(obb.width).toBe(30)
@@ -85,7 +85,7 @@ describe('OBB', () => {
 
   it('should create from AABB correctly', () => {
     const aabb = new AABB(5, 10, 15, 25)
-    const obb = OBB.FromAABB(aabb)
+    const obb = OBB.fromAABB(aabb)
     expect(obb.x).toBe(5)
     expect(obb.y).toBe(10)
     expect(obb.width).toBe(10)

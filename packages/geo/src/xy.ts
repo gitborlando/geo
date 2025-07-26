@@ -63,7 +63,7 @@ export function xy_distance(self: IXY, another: IXY = xy_(0, 0)) {
 
 export function xy_rotate(self: IXY, origin: IXY, rotation: number) {
   if (rotation === 0) return self
-  return Angle.RotatePoint(self.x, self.y, origin.x, origin.y, rotation)
+  return Angle.rotatePoint(self.x, self.y, origin.x, origin.y, rotation)
 }
 
 export function xy_dot(self: IXY, another: IXY) {
@@ -79,7 +79,7 @@ export function xy_opposite(self: IXY) {
 }
 
 export function xy_getRotation(self: IXY, another: IXY, origin: IXY) {
-  return Angle.AngleFy(
+  return Angle.angleFy(
     Math.atan2(self.y - origin.y, self.x - origin.x) -
       Math.atan2(another.y - origin.y, another.x - origin.x),
   )
@@ -90,11 +90,11 @@ export function xy_toArray(self: IXY) {
 }
 
 export function xy_xAxis(rotation: number) {
-  return { x: Angle.Cos(rotation), y: Angle.Sin(rotation) }
+  return { x: Angle.cos(rotation), y: Angle.sin(rotation) }
 }
 
 export function xy_yAxis(rotation: number) {
-  return { x: -Angle.Sin(rotation), y: Angle.Cos(rotation) }
+  return { x: -Angle.sin(rotation), y: Angle.cos(rotation) }
 }
 
 export class XY {
@@ -153,7 +153,7 @@ export class XY {
 
   rotate(origin: IXY, rotation: number) {
     if (rotation === 0) return this
-    return Angle.RotatePoint(this.x, this.y, origin.x, origin.y, rotation)
+    return Angle.rotatePoint(this.x, this.y, origin.x, origin.y, rotation)
   }
 
   dot(another: IXY) {
@@ -169,17 +169,17 @@ export class XY {
   }
 
   angle(another: IXY, origin: IXY) {
-    return Angle.AngleFy(
+    return Angle.angleFy(
       Math.atan2(this.y - origin.y, this.x - origin.x) -
         Math.atan2(another.y - origin.y, another.x - origin.x),
     )
   }
 
-  static From(xy: IXY) {
+  static from(xy: IXY) {
     return new XY(xy.x, xy.y)
   }
 
-  static FromArray(arr: [number, number]) {
+  static fromArray(arr: [number, number]) {
     return new XY(arr[0], arr[1])
   }
 }

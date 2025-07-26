@@ -118,13 +118,13 @@ describe('XY class', () => {
   })
 
   it('should create from point correctly', () => {
-    const xy = XY.From({ x: 5, y: 10 })
+    const xy = XY.from({ x: 5, y: 10 })
     expect(xy.x).toBe(5)
     expect(xy.y).toBe(10)
   })
 
   it('should create from array correctly', () => {
-    const xy = XY.FromArray([15, 25])
+    const xy = XY.fromArray([15, 25])
     expect(xy.x).toBe(15)
     expect(xy.y).toBe(25)
   })

@@ -11,7 +11,7 @@ export class AABB {
     public maxY: number,
   ) {}
 
-  static Rect(aabb: AABB): IRectWithCenter {
+  static rect(aabb: AABB): IRectWithCenter {
     return {
       x: aabb.minX,
       y: aabb.minY,
@@ -22,7 +22,7 @@ export class AABB {
     }
   }
 
-  static Collide(one: AABB, another: AABB): boolean {
+  static collide(one: AABB, another: AABB): boolean {
     return (
       one.minX <= another.maxX &&
       one.maxX >= another.minX &&
@@ -31,7 +31,7 @@ export class AABB {
     )
   }
 
-  static Include(one: AABB, another: AABB) {
+  static include(one: AABB, another: AABB) {
     let result = 1
     let [large, small] = [one, another]
     if (one.maxX - one.minX < another.maxX - another.minX) {
@@ -47,7 +47,7 @@ export class AABB {
     return included ? result : -1
   }
 
-  static Expand(
+  static expand(
     aabb: AABB,
     ...expands: [number] | [number, number, number, number]
   ): AABB {
@@ -65,7 +65,7 @@ export class AABB {
     }
   }
 
-  static Merge(...aabbList: AABB[]) {
+  static merge(...aabbList: AABB[]) {
     let [xMin, yMin, xMax, yMax] = [Infinity, Infinity, -Infinity, -Infinity]
     aabbList.forEach((aabb) => {
       xMin = min(xMin, aabb.minX)
@@ -76,7 +76,7 @@ export class AABB {
     return new AABB(xMin, yMin, xMax, yMax)
   }
 
-  static FromOBB(obb: OBB) {
+  static fromOBB(obb: OBB) {
     const width = obb.projectionLengthAt(xy_(1, 0))
     const height = obb.projectionLengthAt(xy_(0, 1))
     return new AABB(

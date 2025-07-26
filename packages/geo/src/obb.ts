@@ -21,7 +21,7 @@ export class OBB {
     this.center = this.#calcCenter()
     this.axis = this.#calcAxis()
     this.vertexes = this.calcVertexXY()
-    this.aabb = AABB.FromOBB(this)
+    this.aabb = AABB.fromOBB(this)
   }
 
   get xy() {
@@ -34,16 +34,16 @@ export class OBB {
   }
 
   #calcAxis = () => {
-    const cos = Angle.Cos(this.rotation)
-    const sin = Angle.Sin(this.rotation)
+    const cos = Angle.cos(this.rotation)
+    const sin = Angle.sin(this.rotation)
     const widthAxis = xy_(cos, -sin)
     const heightAxis = xy_(sin, cos)
     return (this.axis = { widthAxis, heightAxis })
   }
 
   calcVertexXY = () => {
-    const cos = Angle.Cos(this.rotation)
-    const sin = Angle.Sin(this.rotation)
+    const cos = Angle.cos(this.rotation)
+    const sin = Angle.sin(this.rotation)
     const cosWidth = cos * this.width
     const sinWidth = sin * this.width
     const cosHeight = cos * this.height
@@ -92,16 +92,16 @@ export class OBB {
     return true
   }
 
-  static IdentityOBB() {
+  static identityOBB() {
     return new OBB(0, 0, 0, 0, 0)
   }
 
-  static FromRect(rect: IRect, rotation = 0): OBB {
+  static fromRect(rect: IRect, rotation = 0): OBB {
     const { x, y, width, height } = rect
     return new OBB(x, y, width, height, rotation)
   }
 
-  static FromAABB(aabb: AABB): OBB {
+  static fromAABB(aabb: AABB): OBB {
     const { minX, minY, maxX, maxY } = aabb
     return new OBB(minX, minY, maxX - minX, maxY - minY, 0)
   }

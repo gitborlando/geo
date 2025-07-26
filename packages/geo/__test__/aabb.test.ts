@@ -15,7 +15,7 @@ describe('AABB', () => {
 
   it('should convert to rect correctly', () => {
     const aabb = new AABB(5, 10, 15, 25)
-    const rect = AABB.Rect(aabb)
+    const rect = AABB.rect(aabb)
     expect(rect.x).toBe(5)
     expect(rect.y).toBe(10)
     expect(rect.width).toBe(10)
@@ -29,8 +29,8 @@ describe('AABB', () => {
     const aabb2 = new AABB(5, 5, 15, 15)
     const aabb3 = new AABB(20, 20, 30, 30)
 
-    expect(AABB.Collide(aabb1, aabb2)).toBe(true)
-    expect(AABB.Collide(aabb1, aabb3)).toBe(false)
+    expect(AABB.collide(aabb1, aabb2)).toBe(true)
+    expect(AABB.collide(aabb1, aabb3)).toBe(false)
   })
 
   it('should detect inclusion correctly', () => {
@@ -38,14 +38,14 @@ describe('AABB', () => {
     const small = new AABB(5, 5, 15, 15)
     const outside = new AABB(25, 25, 35, 35)
 
-    expect(AABB.Include(large, small)).toBe(1) // large包含small
-    expect(AABB.Include(small, large)).toBe(0) // small被large包含
-    expect(AABB.Include(large, outside)).toBe(-1) // 不包含
+    expect(AABB.include(large, small)).toBe(1) // large包含small
+    expect(AABB.include(small, large)).toBe(0) // small被large包含
+    expect(AABB.include(large, outside)).toBe(-1) // 不包含
   })
 
   it('should expand correctly with single value', () => {
     const aabb = new AABB(5, 5, 15, 15)
-    const expanded = AABB.Expand(aabb, 2)
+    const expanded = AABB.expand(aabb, 2)
     expect(expanded.minX).toBe(3)
     expect(expanded.minY).toBe(3)
     expect(expanded.maxX).toBe(17)
@@ -54,7 +54,7 @@ describe('AABB', () => {
 
   it('should expand correctly with four values', () => {
     const aabb = new AABB(5, 5, 15, 15)
-    const expanded = AABB.Expand(aabb, 1, 2, 3, 4)
+    const expanded = AABB.expand(aabb, 1, 2, 3, 4)
     expect(expanded.minX).toBe(4)
     expect(expanded.minY).toBe(3)
     expect(expanded.maxX).toBe(18)
@@ -66,7 +66,7 @@ describe('AABB', () => {
     const aabb2 = new AABB(10, 10, 15, 15)
     const aabb3 = new AABB(-5, -5, 0, 0)
 
-    const merged = AABB.Merge(aabb1, aabb2, aabb3)
+    const merged = AABB.merge(aabb1, aabb2, aabb3)
     expect(merged.minX).toBe(-5)
     expect(merged.minY).toBe(-5)
     expect(merged.maxX).toBe(15)
@@ -75,7 +75,7 @@ describe('AABB', () => {
 
   it('should create from OBB correctly', () => {
     const obb = new OBB(0, 0, 10, 20, 0)
-    const aabb = AABB.FromOBB(obb)
+    const aabb = AABB.fromOBB(obb)
     expect(aabb.minX).toBe(0)
     expect(aabb.minY).toBe(0)
     expect(aabb.maxX).toBe(10)
