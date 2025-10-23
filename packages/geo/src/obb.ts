@@ -1,7 +1,7 @@
 import { AABB } from './aabb'
 import { Angle } from './angle'
 import { IRect, IXY } from './types'
-import { xy_, xy_dot, xy_minus, xy_rotate } from './xy'
+import { XY, xy_, xy_dot, xy_minus, xy_rotate } from './xy'
 
 type IAxis = { widthAxis: IXY; heightAxis: IXY }
 
@@ -99,6 +99,13 @@ export class OBB {
   static fromRect(rect: IRect, rotation = 0): OBB {
     const { x, y, width, height } = rect
     return new OBB(x, y, width, height, rotation)
+  }
+
+  static fromCenter(center: IXY, width: number, height: number, rotation = 0) {
+    const dx = center.x - width / 2
+    const dy = center.y - height / 2
+    const xy = XY.of(dx, dy).rotate(center, rotation)
+    return new OBB(xy.x, xy.y, width, height, rotation)
   }
 
   static fromAABB(aabb: AABB): OBB {

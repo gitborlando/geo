@@ -175,6 +175,10 @@ export class XY {
     )
   }
 
+  static of(x: number, y: number) {
+    return new XY(x, y)
+  }
+
   static from(xy: IXY) {
     return new XY(xy.x, xy.y)
   }

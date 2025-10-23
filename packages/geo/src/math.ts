@@ -20,3 +20,7 @@ export function numberHalfFix(number: number) {
   const halfFixed = floatPart >= 0.75 ? 1 : floatPart >= 0.25 ? 0.5 : 0
   return integerPart + halfFixed
 }
+
+export function twoDecimal(number: number) {
+  return Number(number.toFixed(Number.isInteger(number) ? 0 : 2))
+}
