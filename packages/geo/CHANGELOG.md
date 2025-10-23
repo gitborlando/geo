@@ -1,5 +1,11 @@
 # @gitborlando/geo
 
+## 2.1.0
+
+### Minor Changes
+
+- 7bd75bc: 新增一些方法
+
 ## 2.0.0
 
 ### Major Changes
