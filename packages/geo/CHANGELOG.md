@@ -1,5 +1,11 @@
 # @gitborlando/geo
 
+## 3.0.0
+
+### Major Changes
+
+- f121a3e: XY类破坏性更新
+
 ## 2.1.0
 
 ### Minor Changes
