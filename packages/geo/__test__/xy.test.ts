@@ -124,7 +124,7 @@ describe('XY class', () => {
   })
 
   it('should create from array correctly', () => {
-    const xy = XY.fromArray([15, 25])
+    const xy = XY.tuple([15, 25])
     expect(xy.x).toBe(15)
     expect(xy.y).toBe(25)
   })
@@ -137,7 +137,7 @@ describe('XY class', () => {
 
   it('should calculate distance correctly', () => {
     const xy = new XY(0, 0)
-    const distance = xy.distance({ x: 3, y: 4 })
+    const distance = xy.getDistance({ x: 3, y: 4 })
     expect(distance).toBe(5)
   })
 })

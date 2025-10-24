@@ -102,73 +102,46 @@ export class XY {
     public x: number,
     public y: number,
   ) {}
-
-  from(xy: IXY) {
-    this.x = xy.x
-    this.y = xy.y
-    return this
+  plus(...others: IXY[]) {
+    const x = others.reduce((sum, cur) => sum + cur.x, this.x)
+    const y = others.reduce((sum, cur) => sum + cur.y, this.y)
+    return XY.of(x, y)
   }
 
-  client(e: { clientX: number; clientY: number }) {
-    this.x = e.clientX
-    this.y = e.clientY
-    return this
-  }
-
-  center(xy: { centerX: number; centerY: number }) {
-    this.x = xy.centerX
-    this.y = xy.centerY
-    return this
-  }
-
-  plus(another: IXY) {
-    this.x = this.x + another.x
-    this.y = this.y + another.y
-    return this
-  }
-
-  minus(another: IXY) {
-    this.x = this.x - another.x
-    this.y = this.y - another.y
-    return this
+  minus(...others: IXY[]) {
+    const x = others.reduce((sum, cur) => sum - cur.x, this.x)
+    const y = others.reduce((sum, cur) => sum - cur.y, this.y)
+    return XY.of(x, y)
   }
 
   multiply(...numbers: number[]) {
     const n = numbers.reduce((a, b) => a * b, 1)
-    this.x = this.x * n
-    this.y = this.y * n
-    return this
+    return XY.of(this.x * n, this.y * n)
   }
 
   divide(...numbers: number[]) {
     const n = numbers.reduce((a, b) => a * b, 1)
-    this.x = this.x / n
-    this.y = this.y / n
-    return this
-  }
-
-  distance(another: IXY) {
-    return sqrt((this.x - another.x) ** 2 + (this.y - another.y) ** 2)
+    return XY.of(this.x / n, this.y / n)
   }
 
   rotate(origin: IXY, rotation: number) {
-    if (rotation === 0) return this
-    return Angle.rotatePoint(this.x, this.y, origin.x, origin.y, rotation)
-  }
-
-  dot(another: IXY) {
-    return this.x * another.x + this.y * another.y
-  }
-
-  opposite() {
-    return { x: -this.x, y: -this.y }
+    if (rotation === 0) return XY.from(this)
+    return XY.from(Angle.rotatePoint(this.x, this.y, origin.x, origin.y, rotation))
   }
 
   symmetric(another: IXY, origin: IXY) {
-    return { x: 2 * origin.x - another.x, y: 2 * origin.y - another.y }
+    return XY.of(2 * origin.x - another.x, 2 * origin.y - another.y)
   }
 
-  angle(another: IXY, origin: IXY) {
+  getDot(another: IXY) {
+    return this.x * another.x + this.y * another.y
+  }
+
+  getDistance(another: IXY) {
+    return sqrt((this.x - another.x) ** 2 + (this.y - another.y) ** 2)
+  }
+
+  getAngle(another: IXY, origin: IXY) {
     return Angle.angleFy(
       Math.atan2(this.y - origin.y, this.x - origin.x) -
         Math.atan2(another.y - origin.y, another.x - origin.x),
@@ -180,10 +153,22 @@ export class XY {
   }
 
   static from(xy: IXY) {
-    return new XY(xy.x, xy.y)
+    return XY.of(xy.x, xy.y)
   }
 
-  static fromArray(arr: [number, number]) {
-    return new XY(arr[0], arr[1])
+  static center(xy: { centerX: number; centerY: number }) {
+    return XY.of(xy.centerX, xy.centerY)
+  }
+
+  static leftTop(e: { left: number; top: number }) {
+    return XY.of(e.left, e.top)
+  }
+
+  static client(e: { clientX: number; clientY: number }) {
+    return XY.of(e.clientX, e.clientY)
+  }
+
+  static tuple(arr: [number, number]) {
+    return XY.of(arr[0], arr[1])
   }
 }
