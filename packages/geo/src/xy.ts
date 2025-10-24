@@ -148,11 +148,16 @@ export class XY {
     )
   }
 
+  primitive() {
+    return { x: this.x, y: this.y }
+  }
+
   static of(x: number, y: number) {
     return new XY(x, y)
   }
 
   static from(xy: IXY) {
+    if (xy instanceof XY) return xy
     return XY.of(xy.x, xy.y)
   }
 
