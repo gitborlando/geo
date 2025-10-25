@@ -45,7 +45,7 @@ describe('AABB', () => {
 
   it('should expand correctly with single value', () => {
     const aabb = new AABB(5, 5, 15, 15)
-    const expanded = AABB.expand(aabb, 2)
+    const expanded = AABB.extend(aabb, 2)
     expect(expanded.minX).toBe(3)
     expect(expanded.minY).toBe(3)
     expect(expanded.maxX).toBe(17)
@@ -54,7 +54,7 @@ describe('AABB', () => {
 
   it('should expand correctly with four values', () => {
     const aabb = new AABB(5, 5, 15, 15)
-    const expanded = AABB.expand(aabb, 1, 2, 3, 4)
+    const expanded = AABB.extend(aabb, 1, 2, 3, 4)
     expect(expanded.minX).toBe(4)
     expect(expanded.minY).toBe(3)
     expect(expanded.maxX).toBe(18)

@@ -47,7 +47,7 @@ export class AABB {
     return included ? result : -1
   }
 
-  static expand(
+  static extend(
     aabb: AABB,
     ...expands: [number] | [number, number, number, number]
   ): AABB {

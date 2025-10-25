@@ -102,6 +102,10 @@ export class XY {
     public x: number,
     public y: number,
   ) {}
+  plain() {
+    return { x: this.x, y: this.y }
+  }
+
   plus(...others: IXY[]) {
     const x = others.reduce((sum, cur) => sum + cur.x, this.x)
     const y = others.reduce((sum, cur) => sum + cur.y, this.y)
@@ -129,8 +133,14 @@ export class XY {
     return XY.from(Angle.rotatePoint(this.x, this.y, origin.x, origin.y, rotation))
   }
 
-  symmetric(another: IXY, origin: IXY) {
-    return XY.of(2 * origin.x - another.x, 2 * origin.y - another.y)
+  symmetric(origin: IXY) {
+    return XY.of(2 * origin.x - this.x, 2 * origin.y - this.y)
+  }
+
+  ratio(another: IXY, t: number) {
+    const x = this.x + (another.x - this.x) * t
+    const y = this.y + (another.y - this.y) * t
+    return XY.of(x, y)
   }
 
   getDot(another: IXY) {
@@ -146,10 +156,6 @@ export class XY {
       Math.atan2(this.y - origin.y, this.x - origin.x) -
         Math.atan2(another.y - origin.y, another.x - origin.x),
     )
-  }
-
-  primitive() {
-    return { x: this.x, y: this.y }
   }
 
   static _(x: number = 0, y: number = 0) {
