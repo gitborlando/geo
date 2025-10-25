@@ -1,5 +1,11 @@
 # @gitborlando/geo
 
+## 4.0.0
+
+### Major Changes
+
+- 7773415: XY,AABB类破坏性更新
+
 ## 3.1.0
 
 ### Minor Changes
