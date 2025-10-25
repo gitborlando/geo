@@ -152,6 +152,10 @@ export class XY {
     return { x: this.x, y: this.y }
   }
 
+  static _(x: number = 0, y: number = 0) {
+    return { x, y }
+  }
+
   static of(x: number, y: number) {
     return new XY(x, y)
   }
