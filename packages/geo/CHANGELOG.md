@@ -1,5 +1,12 @@
 # @gitborlando/geo
 
+## 3.1.0
+
+### Minor Changes
+
+- 2b4693c: 更新xy类
+- 0ee9da2: XY类小幅更新
+
 ## 3.0.0
 
 ### Major Changes
