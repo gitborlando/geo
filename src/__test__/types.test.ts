@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { IRect, IRectWithCenter, IXY } from '../src/types'
+import { IRect, IRectWithCenter, IXY } from '../types'
 
 describe('Types', () => {
   it('should define IXY interface correctly', () => {

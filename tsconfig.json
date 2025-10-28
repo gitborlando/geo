@@ -21,5 +21,11 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": false
   },
-  "include": ["packages"]
+  "include": [
+    "packages",
+    "src",
+    "tsup.config.ts",
+    "vitest.config.ts",
+    "src/__test__"
+  ]
 }

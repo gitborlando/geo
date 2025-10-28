@@ -4,7 +4,7 @@ import {
   pointsOnBezierCurves,
   simplify,
   simplifyPoints,
-} from '../src/points-of-bezier'
+} from '../points-of-bezier'
 
 describe('Points of Bezier', () => {
   const createBezierPoints = (): Point[] => [

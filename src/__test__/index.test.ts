@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import * as Geo from '../src/index'
+import * as Geo from '../index'
 
 describe('Index exports', () => {
   it('should export all modules correctly', () => {

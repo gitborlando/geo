@@ -14,7 +14,7 @@ import {
   xy_opposite,
   xy_plus,
   xy_toArray,
-} from '../src/xy'
+} from '../xy'
 
 describe('XY utilities', () => {
   it('should create xy point correctly', () => {

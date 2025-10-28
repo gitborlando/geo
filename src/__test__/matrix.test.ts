@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { AABB } from '../src/aabb'
-import { IMatrix, Matrix } from '../src/matrix'
+import { AABB } from '../aabb'
+import { IMatrix, Matrix } from '../matrix'
 
 describe('Matrix', () => {
   it('should create identity matrix correctly', () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { AABB } from '../src/aabb'
-import { OBB } from '../src/obb'
+import { AABB } from '../aabb'
+import { OBB } from '../obb'
 
 describe('OBB', () => {
   it('should create OBB correctly', () => {

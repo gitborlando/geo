@@ -13,7 +13,7 @@ import {
   random,
   round,
   sqrt,
-} from '../src/math'
+} from '../math'
 
 describe('Math utilities', () => {
   it('should export Math functions correctly', () => {

@@ -1,8 +1,8 @@
 // 测试轴对齐包围盒功能
 
 import { describe, expect, it } from 'vitest'
-import { AABB } from '../src/aabb'
-import { OBB } from '../src/obb'
+import { AABB } from '../aabb'
+import { OBB } from '../obb'
 
 describe('AABB', () => {
   it('should create AABB correctly', () => {

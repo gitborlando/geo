@@ -1,11 +1,40 @@
 {
-  "version": "1.0.0",
+  "name": "@gitborlando/geo",
+  "version": "4.0.0",
+  "description": "",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
-    "prepare": "npx husky",
-    "clean": "rm -rf node_modules pnpm-lock.yaml && pnpm -r clean",
-    "build": "pnpm -r build",
-    "changeset": "changeset"
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "clean": "rm -rf node_modules pnpm-lock.yaml",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:ui": "vitest --ui",
+    "prepare": "npx husky"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vitest/ui": "^3.2.4",
+    "vitest": "^3.2.4",
+    "@changesets/cli": "^2.29.5",
+    "@types/node": "^24.0.15",
+    "husky": "^9.1.7",
+    "pretty-quick": "^4.2.2",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
   },
   "prettier": {
     "printWidth": 85,
@@ -15,22 +44,5 @@
     "semi": false,
     "singleQuote": true,
     "jsxSingleQuote": true
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.29.5",
-    "@types/node": "^24.0.15",
-    "husky": "^9.1.7",
-    "pretty-quick": "^4.2.2",
-    "tsup": "^8.5.0",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
-  },
-  "publishConfig": {
-    "access": "private",
-    "registry": "https://registry.npmjs.org"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

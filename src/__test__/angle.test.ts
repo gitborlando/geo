@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { Angle, PI } from '../src/angle'
+import { Angle, PI } from '../angle'
 
 describe('Angle', () => {
   it('should export PI constant correctly', () => {
