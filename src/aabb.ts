@@ -1,7 +1,7 @@
 import { max, min } from './math'
 import { OBB } from './obb'
 import { IRectWithCenter } from './types'
-import { xy_ } from './xy'
+import { XY } from './xy'
 
 export class AABB {
   constructor(
@@ -20,6 +20,15 @@ export class AABB {
       centerX: aabb.minX + (aabb.maxX - aabb.minX) / 2,
       centerY: aabb.minY + (aabb.maxY - aabb.minY) / 2,
     }
+  }
+
+  static rectTuple(aabb: AABB) {
+    return [
+      aabb.minX,
+      aabb.minY,
+      aabb.maxX - aabb.minX,
+      aabb.maxY - aabb.minY,
+    ] as const
   }
 
   static collide(one: AABB, another: AABB): boolean {
@@ -77,8 +86,8 @@ export class AABB {
   }
 
   static fromOBB(obb: OBB) {
-    const width = obb.projectionLengthAt(xy_(1, 0))
-    const height = obb.projectionLengthAt(xy_(0, 1))
+    const width = obb.projectionLengthAt(XY._(1, 0))
+    const height = obb.projectionLengthAt(XY._(0, 1))
     return new AABB(
       obb.center.x - width / 2,
       obb.center.y - height / 2,

@@ -106,6 +106,10 @@ export class XY {
     return { x: this.x, y: this.y }
   }
 
+  tuple() {
+    return [this.x, this.y] as const
+  }
+
   plus(...others: IXY[]) {
     const x = others.reduce((sum, cur) => sum + cur.x, this.x)
     const y = others.reduce((sum, cur) => sum + cur.y, this.y)
@@ -185,5 +189,13 @@ export class XY {
 
   static tuple(arr: [number, number]) {
     return XY.of(arr[0], arr[1])
+  }
+
+  static xAxis(rotation: number) {
+    return XY.of(Angle.cos(rotation), Angle.sin(rotation))
+  }
+
+  static yAxis(rotation: number) {
+    return XY.of(-Angle.sin(rotation), Angle.cos(rotation))
   }
 }
