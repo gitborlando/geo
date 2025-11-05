@@ -1,6 +1,6 @@
 {
   "name": "@gitborlando/geo",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "",
   "type": "module",
   "exports": {
@@ -18,6 +18,10 @@
     "test:ui": "vitest --ui",
     "prepare": "npx husky"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
