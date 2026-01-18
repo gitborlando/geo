@@ -1,6 +1,5 @@
-import { max, min } from './math'
 import { OBB } from './obb'
-import { IRectWithCenter } from './types'
+import { IRect, IRectWithCenter, IXY } from './types'
 import { XY } from './xy'
 
 export class AABB {
@@ -29,6 +28,32 @@ export class AABB {
       aabb.maxX - aabb.minX,
       aabb.maxY - aabb.minY,
     ] as const
+  }
+
+  static update(aabb: AABB, minX: number, minY: number, maxX: number, maxY: number) {
+    aabb.minX = minX
+    aabb.minY = minY
+    aabb.maxX = maxX
+    aabb.maxY = maxY
+    return aabb
+  }
+
+  static updateFromRect(aabb: AABB, rect: IRect) {
+    return AABB.update(
+      aabb,
+      rect.x,
+      rect.y,
+      rect.x + rect.width,
+      rect.y + rect.height,
+    )
+  }
+
+  static shift(aabb: AABB, delta: IXY) {
+    aabb.minX += delta.x
+    aabb.minY += delta.y
+    aabb.maxX += delta.x
+    aabb.maxY += delta.y
+    return aabb
   }
 
   static collide(one: AABB, another: AABB): boolean {
@@ -74,25 +99,44 @@ export class AABB {
     }
   }
 
-  static merge(...aabbList: AABB[]) {
-    let [xMin, yMin, xMax, yMax] = [Infinity, Infinity, -Infinity, -Infinity]
-    aabbList.forEach((aabb) => {
-      xMin = min(xMin, aabb.minX)
-      yMin = min(yMin, aabb.minY)
-      xMax = max(xMax, aabb.maxX)
-      yMax = max(yMax, aabb.maxY)
-    })
+  static merge(aabbList: AABB[] | Set<AABB>) {
+    if (Array.isArray(aabbList)) {
+      if (aabbList.length === 0) return new AABB(0, 0, 0, 0)
+    } else {
+      if (aabbList.size === 0) return new AABB(0, 0, 0, 0)
+    }
+
+    let xMin = Infinity,
+      yMin = Infinity,
+      xMax = -Infinity,
+      yMax = -Infinity
+    for (const aabb of aabbList) {
+      xMin = Math.min(xMin, aabb.minX)
+      yMin = Math.min(yMin, aabb.minY)
+      xMax = Math.max(xMax, aabb.maxX)
+      yMax = Math.max(yMax, aabb.maxY)
+    }
     return new AABB(xMin, yMin, xMax, yMax)
   }
 
   static fromOBB(obb: OBB) {
-    const width = obb.projectionLengthAt(XY._(1, 0))
-    const height = obb.projectionLengthAt(XY._(0, 1))
+    const width = obb.projectAt(XY.$(1, 0))
+    const height = obb.projectAt(XY.$(0, 1))
     return new AABB(
       obb.center.x - width / 2,
       obb.center.y - height / 2,
       obb.center.x + width / 2,
       obb.center.y + height / 2,
     )
+  }
+
+  static updateFromOBB(aabb: AABB, obb: OBB) {
+    const width = obb.projectAt(XY.$(1, 0))
+    const height = obb.projectAt(XY.$(0, 1))
+    aabb.minX = obb.center.x - width / 2
+    aabb.minY = obb.center.y - height / 2
+    aabb.maxX = obb.center.x + width / 2
+    aabb.maxY = obb.center.y + height / 2
+    return aabb
   }
 }
