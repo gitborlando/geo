@@ -29,7 +29,7 @@ export class OBB {
   }
 
   #calcCenter = () => {
-    const center = XY.center(this)
+    const center = XY.center(this).plus(this.xy)
     return center.rotate(this.xy, this.rotation)
   }
 
@@ -54,8 +54,32 @@ export class OBB {
     return (this.vertexes = [TL, TR, BR, BL])
   }
 
+  plain = () => {
+    return {
+      x: this.x,
+      y: this.y,
+      width: this.width,
+      height: this.height,
+      rotation: this.rotation,
+      center: this.center,
+    }
+  }
+
   clone = () => {
     return new OBB(this.x, this.y, this.width, this.height, this.rotation)
+  }
+
+  shift = (delta: IXY) => {
+    this.x += delta.x
+    this.y += delta.y
+    this.center.x += delta.x
+    this.center.y += delta.y
+    this.vertexes.forEach((vertex) => {
+      vertex.x += delta.x
+      vertex.y += delta.y
+    })
+    AABB.updateFromOBB(this.aabb, this)
+    return this
   }
 
   projectAt = (anotherAxis: IXY) => {
