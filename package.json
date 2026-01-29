@@ -1,6 +1,6 @@
 {
   "name": "@gitborlando/geo",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "",
   "type": "module",
   "exports": {
@@ -12,11 +12,11 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
-    "clean": "rm -rf node_modules pnpm-lock.yaml",
+    "re-i": "rm -rf node_modules pnpm-lock.yaml",
+    "prepare": "npx simple-git-hooks",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:ui": "vitest --ui",
-    "prepare": "npx husky"
+    "test:ui": "vitest --ui"
   },
   "files": [
     "dist",
@@ -30,15 +30,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@vitest/ui": "^3.2.4",
-    "vitest": "^3.2.4",
     "@changesets/cli": "^2.29.5",
     "@types/node": "^24.0.15",
-    "husky": "^9.1.7",
+    "@vitest/ui": "^3.2.4",
     "pretty-quick": "^4.2.2",
     "tsup": "^8.5.0",
     "tsx": "^4.20.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4",
+    "simple-git-hooks": "^2.13.1"
   },
   "prettier": {
     "printWidth": 85,
@@ -48,5 +48,8 @@
     "semi": false,
     "singleQuote": true,
     "jsxSingleQuote": true
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx pretty-quick --staged"
   }
 }
